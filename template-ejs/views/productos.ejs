@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include("./partials/head") %>
+<body>
+    <%- include("./partials/header") %>
+    <main>
+        <section>
+            <h2>Listado Productos</h2>
+            <% if (productos.length > 0) { %>
+                <% productos.map( (producto) => { %>
+                <div class="producto">
+                    <div class="producto__content">
+                        <h3><%= producto.title %></h3>
+                        <span>Precio: <%= producto.price %></span>
+                    </div>
+                    <img class="producto__img" src=<%= producto.thumbnail %> alt="Imagen de producto">
+                </div>
+                <% }); %>
+        
+            <% } else { %>
+                <p>No hay registros de productos</p>
+            <% } %>
+        </section>
+    </main>
+</body>
+</html>

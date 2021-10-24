@@ -1,0 +1,10 @@
+extends layout.pug
+
+block content
+    section 
+        h2 Agregar Productos
+        form(action="/productos", method="post") 
+            input(type="text", name="title", placeholder="Ingresar nombre...")
+            input(type="number", name="price", placeholder="Ingresar precio...")
+            input(type="hidden", name="thumbnail", value="https://coder-conf.com/_nuxt/img/astronauta.84dff61.png")
+            button Enviar

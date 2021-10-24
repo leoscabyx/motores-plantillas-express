@@ -1,0 +1,14 @@
+extends layout.pug
+
+block content
+    section 
+        h2 Listado Productos 
+        if productos.length > 0
+            each val in productos
+                div.producto
+                    div.producto__content
+                        h3 #{val.title}
+                        span #{val.price} 
+                    img.producto__img(src=val.thumbnail, alt="Imagen de producto")
+        else 
+            p No hay registros de productos
