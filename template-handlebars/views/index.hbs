@@ -1,9 +1,26 @@
 <section>
     <h2>Agregar Producto</h2>
-    <form action="/productos" method="post">
+    <form action="/" method="post" id="formulario">
         <input type="text" name="title" placeholder="Ingresar nombre..." required>
         <input type="number" name="price" placeholder="Ingresar precio" required>
-        <input type="hidden" name="thumbnail" value="https://coder-conf.com/_nuxt/img/astronauta.84dff61.png">
+        <input type="text" name="thumbnail" value="https://coder-conf.com/_nuxt/img/astronauta.84dff61.png">
         <button>Enviar</button>
     </form>
+</section>
+
+<section>
+    <h2>Listado Productos</h2>
+    <div id="productos">
+
+    </div>
+</section>
+
+<section>
+    <h2>Centro de Mensajes</h2>
+    <form action="/" method="post" id="formulario2">
+        <input type="email" name="email" placeholder="Ingresar email..." required value="leo@gmail.com">
+        <input type="text" name="msj" placeholder="Ingresar msj" required value="algun texto">
+        <button>Enviar</button>
+    </form>
+    <div id="msjs"></div>
 </section>

@@ -90,3 +90,39 @@ section {
     height: 64px;
     object-fit: cover;
 }
+
+#productos {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+#msjs {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.msj {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 10px 20px;
+    background-color: #FAFAFA;
+    border-radius: 5px;
+}
+
+.msj__email {
+    color: blue;
+    font-weight: 700;
+}
+
+.msj__fecha {
+    color: brown;
+}
+
+.msj__texto {
+    font-style: italic;
+    color: green;
+    width: 100%;
+}

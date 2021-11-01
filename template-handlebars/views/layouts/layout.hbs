@@ -6,16 +6,93 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{page}} - Handlebars</title>
     <link rel="stylesheet" href="./index.css">
+    <script src="./socket.io/socket.io.js"></script>
 </head>
 <body>
-    <header>
+    {{!--     <header>
         <nav>
             <a href="/">Inicio</a>
             <a href="/productos">Productos</a>
         </nav>
-    </header>
+    </header> --}}
     <main>
         {{{body}}}
     </main>
+    <script>
+        const socket = io()
+        const form = document.querySelector('#formulario')
+        const form2 = document.querySelector('#formulario2')
+        const divMsjs = document.querySelector('#msjs')
+        const divProductos = document.querySelector('#productos')
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault()
+            let title = e.target[0].value
+            let price = e.target[1].value
+            let thumbnail = e.target[2].value 
+            socket.emit('producto', { title, price, thumbnail })
+        })
+
+        socket.on('productos', data => {
+            
+            if(data.length > 0){
+                // console.log(data, 'linea 36')
+                divProductos.innerHTML = ''
+                divProductos.textContent = ''
+                let divHTML = ''
+                data.map( (producto) => {
+                divHTML += `
+                    <div class="producto" >
+                        <div class="producto__content">
+                            <h3>${producto.title}</h3>
+                            <span>Precio: ${producto.price}</span>
+                        </div>
+                        <img class="producto__img" src=${producto.thumbnail} alt="Imagen de producto">
+                    </div>
+                    `
+
+                })
+                
+                divProductos.innerHTML = divHTML
+            }else{
+                divProductos.innerHTML = 'No hay productos'
+            }
+            
+        })
+        
+        form2.addEventListener('submit', (e) => {
+            e.preventDefault()
+            let email = e.target[0].value
+            let texto = e.target[1].value
+            let fecha = new Date()
+            const nuevoMsj = { email, texto, fecha }
+            // console.log(nuevoMsj)
+            socket.emit('msj', nuevoMsj)
+
+        })
+
+        socket.on('msjs', (data) => {
+            console.log(data)
+            if(data.length > 0){
+                console.log(data)
+                let divHTML = ''
+                data.map( (msj) => {
+                divHTML += `
+                    <div class="msj" >
+                        <span class="msj__email">${msj.email}</span>
+                        <span class="msj__fecha">${msj.fecha}:</span>
+                        <span class="msj__texto">${msj.texto}</span>
+                    </div>
+                    `
+
+                })
+                divMsjs.innerHTML = divHTML
+            }else{
+                divMsjs.innerHTML = 'No hay msjs'
+            }
+
+        })
+
+    </script>
 </body>
 </html>
